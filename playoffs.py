@@ -27,20 +27,18 @@ class Team:
 
 from sys import argv
 
-# leagueType = argv[1]
-# leagueYear = argv[2]
-# fileName = argv[3]
-# numTrials = int(argv[4])
-
-fileName = argv[1]
-numTrials = int(argv[2])
+leagueType = argv[1]
+leagueYear = int(argv[2])
+fileName = argv[3]
+numTrials = int(argv[4])
 
 
-from mlb2014 import divisions2014 as setDivisions
-from mlb2014 import format2014 as runPlayoffs
+if leagueType == "mlb":
+    from mlb import setDivisions
+    from mlb import runPlayoffs
 
 global divisions
-divisions = setDivisions()
+divisions = setDivisions(leagueYear)
 
 # print divisions
 
@@ -51,7 +49,6 @@ totalWins = {}
 
 
 with open(fileName, 'r') as teamsFile:
-
 
     for line in teamsFile:
 
@@ -75,14 +72,14 @@ with open(fileName, 'r') as teamsFile:
 # SIMULATING A FUCKLOAD OF PLAYOFFS
 for i in range(0,numTrials):
 
-    winner = runPlayoffs(seedsAL, seedsNL)
+    winner = runPlayoffs(seedsAL, seedsNL, leagueYear)
 
     totalWins[winner.name] += 1
 
 
 
 # PRINTING RESULTS
-print "\nChampionships (%d Trials):\n" % numTrials 
+print "\nChampionships (%d trials):\n" % numTrials 
 
 for team in totalWins:
 

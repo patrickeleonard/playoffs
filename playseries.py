@@ -15,7 +15,7 @@ def playSeries(team1, team2, numGames):
     team2Wins = 0
     currentGame = 1
 
-    seed() #seed the random number generator
+    #seed() #seed the random number generator
 
     while currentGame <= numGames:
 
