@@ -1,4 +1,3 @@
-#scoped for just 2014 ()
 def setDivisions(year):
 
     if year >= 2013:

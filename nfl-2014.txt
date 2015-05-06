@@ -1,0 +1,12 @@
+1 - Patriots - 12 - 4 - 0
+2 - Broncos - 12 - 4 - 0
+3 - Steelers - 11 - 5 - 0
+4 - Colts - 11 - 5 - 0
+5 - Bengals - 10 - 5 - 1
+6 - Ravens - 10 - 6 - 1
+1 - Seahawks - 12 - 4 - 0
+2 - Packers - 12 - 4 - 0
+3 - Cowboys - 12 - 4 - 0
+4 - Panthers - 7 - 8 - 1
+5 - Cardinals - 11 - 5 - 0
+6 - Lions - 11 - 5 - 0

@@ -1,0 +1,16 @@
+A1 - Canadiens - 50 - 22 - 10
+A2 - Lightning - 50 - 24 - 8
+A3 - Red Wings - 43 - 25 - 14
+M1 - Rangers - 53 - 22 - 7
+M2 - Capitals - 45 - 26 - 11
+M3 - Islanders - 47 - 28 - 7
+WC1 - Penguins - 43 - 27 - 12
+WC2 - Senators - 43 - 26 - 13
+C1 - Blues - 51 - 24 - 7
+C2 - Predators - 47 - 25 - 10
+C3 - Blackhawks - 48 - 28 - 6
+P1 - Ducks - 51 - 24 - 7
+P2 - Canucks - 48 - 29 - 5
+P3 - Flames - 45 - 30 - 7
+WC1 - Jets - 43 - 26 - 13
+WC2 - Wild - 46 - 28 - 8
