@@ -166,16 +166,71 @@ def setDivisions(year):
 
     return divisions
 
+
+def setSeeds(teamsList, divisions, year):
+
+    #find each division champ for both AL and NL
+
+    #find next 2 best teams in each league (wild card teams)
+
+    #in each league, wild card teams become seeds 4-5 and do the 1-game playoff
+
+    #other division champs are ranked 1-2-3 w/ relevant tiebreakers(?)
+
+    #then it's a typical 1-4 and 2-3 playoff for AL and NL, right?
+
+    if year >= 2012:
+        numTeams = 10
+    elif yea >= 1994:
+        numTeams = 8
+
+    seeds = []
+
+    #rankedTeams = sorted(teamsList, key=lambda Team: Team.points, reverse=True)
+    #sorts all teams on points, highest first
+
+    qualifyingTeams = {'AL East': [], 'AL Central': [], 'AL West': [], 'AL': [], 'NL East': [], 'NL Central': [], 'NL West': [], 'NL': []}
+
+    for thisTeam in teamsList:
+        
+        #if there's no division champ yet, or thisTeam has the same number of wins as the current champ, append it
+        if (len(qualifyingTeams[thisTeam.division]) == 0) or (thisTeam.points == qualifyingTeams[thisTeam.division][0].points):
+            qualifyingTeams[thisTeam.division].append(thisTeam)
+            print 'added ', thisTeam.name, ' to ', thisTeam.division
+
+        #if thisTeam is better than the current division 'champ', replace it and move the previous one to the wild card list
+        elif thisTeam.points > qualifyingTeams[thisTeam.division][0].points:
+            qualifyingTeams[thisTeam.conference].append(qualifyingTeams[thisTeam.division]) #append current division champ(s) to the wild card list
+            qualifyingTeams[thisTeam.division] = []
+            qualifyingTeams[thisTeam.division].append(thisTeam)
+        
+        #if thisTeam is worse than the current division champ, append it to the wild card list
+        elif thisTeam.points < qualifyingTeams[thisTeam.division][0].points:
+            qualifyingTeams[thisTeam.conference].append(thisTeam)
+            print 'added ', thisTeam.name, ' to ', thisTeam.conference, ' wild card'
+
+    qualifyingTeams['AL'].sort(key=lambda Team: Team.points, reverse=True)
+    qualifyingTeams['NL'].sort(key=lambda Team: Team.points, reverse=True)
+
+    return qualifyingTeams
+
+
+
 # format starting in 2012
 def runPlayoffs(seedsAL, seedsNL, year):
 
     from playseries import playSeries
 
+    lenWC = 1
+    lenDS = 5
+    lenCS = 7
+    lenWS = 7
+
     if year >= 2012:
 
         # WILD CARD GAMES
-        wcAL = playSeries(seedsAL[4], seedsAL[5], 1)
-        wcNL = playSeries(seedsNL[4], seedsNL[5], 1)
+        wcAL = playSeries(seedsAL[4], seedsAL[5], lenWC)
+        wcNL = playSeries(seedsNL[4], seedsNL[5], lenWC)
 
     elif year >= 1994:
         wcAL = seedsAL[4]
@@ -186,18 +241,18 @@ def runPlayoffs(seedsAL, seedsNL, year):
         exit()
 
     # DIVISION SERIES
-    alcs1 = playSeries(seedsAL[1], wcAL, 5)
-    alcs2 = playSeries(seedsAL[2], seedsAL[3], 5)
+    alcs1 = playSeries(seedsAL[1], wcAL, lenDS)
+    alcs2 = playSeries(seedsAL[2], seedsAL[3], lenDS)
 
-    nlcs1 = playSeries(seedsNL[1], wcNL, 5)
-    nlcs2 = playSeries(seedsNL[2], seedsNL[3], 5)
+    nlcs1 = playSeries(seedsNL[1], wcNL, lenDS)
+    nlcs2 = playSeries(seedsNL[2], seedsNL[3], lenDS)
 
     # LEAGUE CHAMPIONSHIP SERIES
-    champAL = playSeries(alcs1, alcs2, 7)
-    champNL = playSeries(nlcs1, nlcs2, 7)
+    champAL = playSeries(alcs1, alcs2, lenCS)
+    champNL = playSeries(nlcs1, nlcs2, lenCS)
 
     # WORLD SERIES
-    champWS = playSeries(champAL, champNL, 7)
+    champWS = playSeries(champAL, champNL, lenWS)
 
     # Print statements
     # print "\nWild Card winners:"

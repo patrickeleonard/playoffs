@@ -28,7 +28,8 @@ class Team:
         if leagueType == 'mls':
             self.conference = divisions[self.name]
         else:
-            [self.conference, self.division] = divisions[self.name].split(' ') #calling it "conference" but it's the AL or NL
+            self.division = divisions[self.name]
+            [self.conference, self.justDivision] = divisions[self.name].split(' ') #calling it "conference" but it's the AL or NL
 
         # SETTING POINT-COUNTING SCHEME
         if leagueType == 'mlb' or leagueType == 'nba':
@@ -53,7 +54,7 @@ numTrials = int(argv[3])
 
 if leagueType == 'mlb' or leagueType == 'MLB':
     leagueType = 'mlb'
-    from mlb import setDivisions, runPlayoffs
+    from mlb import setDivisions, runPlayoffs, setSeeds
 
 elif leagueType == 'nfl' or leagueType == 'NFL':
     leagueType = 'nfl'
@@ -75,7 +76,10 @@ global divisions
 divisions = setDivisions(leagueYear)
 
 # print divisions
-# teamsList = []
+
+
+teamsList = []
+
 
 seeds1 = {}
 seeds2 = {}
@@ -94,7 +98,7 @@ with open(fileName, 'r') as teamsFile:
 
         currentTeam = Team(leagueType, teamData)
 
-        # teamsList.append(currentTeam)
+        teamsList.append(currentTeam)
 
         if currentTeam.conference == 'AL' or currentTeam.conference == 'AFC' or currentTeam.conference == 'Eastern':
             seeds1[currentTeam.seed] = currentTeam
@@ -108,6 +112,10 @@ with open(fileName, 'r') as teamsFile:
 
     # for team in teamsList:
     #     print team.name, team.points
+
+if leagueType == 'mlb':
+    #print teamsList
+    qualifyingTeams = setSeeds(teamsList, divisions, leagueYear)
 
 
 # SIMULATING A FUCKLOAD OF PLAYOFFS
