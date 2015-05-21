@@ -29,7 +29,9 @@ class Team:
             self.conference = divisions[self.name]
         else:
             self.division = divisions[self.name]
-            [self.conference, self.justDivision] = divisions[self.name].split(' ') #calling it "conference" but it's the AL or NL
+            self.conference = divisions[self.name].split(' ')[0]
+            # self.justDivision = divisions[self.name].split(' ')[1]
+            # [self.conference, self.justDivision] = divisions[self.name].split(' ') #calling it "conference" but it's the AL or NL
 
         # SETTING POINT-COUNTING SCHEME
         if leagueType == 'mlb' or leagueType == 'nba':
