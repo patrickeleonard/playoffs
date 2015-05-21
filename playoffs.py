@@ -115,6 +115,8 @@ with open(fileName, 'r') as teamsFile:
     # for team in teamsList:
     #     print team.name, team.points
 
+    teamsList.sort(key=lambda Team: Team.name)
+
 if leagueType == 'mlb':
     #print teamsList
     qualifyingTeams = setSeeds(teamsList, divisions, leagueYear)
@@ -134,7 +136,8 @@ print "\nChampionships (%d trials):\n" % numTrials
 
 for team in totalWins:
 
-    print team, totalWins[team], "\n"
+    if totalWins[team] > 0:
+        print team, totalWins[team], "\n"
 
 
 

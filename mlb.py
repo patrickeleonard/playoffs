@@ -3,6 +3,9 @@ def setDivisions(year):
     if year >= 2013:
 
         divisions = {
+
+            'All': ['AL', 'AL East', 'AL Central', 'AL West', 'NL', 'NL East', 'NL Central', 'NL West'],
+
             'Orioles': 'AL East',
             'Red Sox': 'AL East',
             'Yankees': 'AL East', 
@@ -43,6 +46,9 @@ def setDivisions(year):
     elif year >= 2005:
 
         divisions = {
+
+            'All': ['AL', 'AL East', 'AL Central', 'AL West', 'NL', 'NL East', 'NL Central', 'NL West'],
+
             'Orioles': 'AL East',
             'Red Sox': 'AL East',
             'Yankees': 'AL East', 
@@ -83,6 +89,9 @@ def setDivisions(year):
     elif year >= 1998:
 
         divisions = {
+
+            'All': ['AL', 'AL East', 'AL Central', 'AL West', 'NL', 'NL East', 'NL Central', 'NL West'],
+
             'Orioles': 'AL East',
             'Red Sox': 'AL East',
             'Yankees': 'AL East', 
@@ -123,6 +132,9 @@ def setDivisions(year):
     elif year >= 1994:
 
         divisions = {
+
+            'All': ['AL', 'AL East', 'AL Central', 'AL West', 'NL', 'NL East', 'NL Central', 'NL West'],
+
             'Orioles': 'AL East',
             'Red Sox': 'AL East',
             'Yankees': 'AL East', 
@@ -181,34 +193,40 @@ def setSeeds(teamsList, divisions, year):
 
     if year >= 2012:
         numWildCardTeams = 2
-    elif yea >= 1994:
+    elif year >= 1994:
         numWildCardTeams = 1
 
 
     #rankedTeams = sorted(teamsList, key=lambda Team: Team.points, reverse=True)
     #sorts all teams on points, highest first
+    qualifyingTeams = {}
 
-    qualifyingTeams = {'AL East': [], 'AL Central': [], 'AL West': [], 'AL': [], 'NL East': [], 'NL Central': [], 'NL West': [], 'NL': []}
+    for division in divisions['All']:
+        qualifyingTeams[division] = []
+
+    #qualifyingTeams = {'AL East': [], 'AL Central': [], 'AL West': [], 'AL': [], 'NL East': [], 'NL Central': [], 'NL West': [], 'NL': []}
 
     for thisTeam in teamsList:
         #if there's no division champ yet, or thisTeam has the same number of wins as the current champ, append it
         if (len(qualifyingTeams[thisTeam.division]) == 0) or (thisTeam.points == qualifyingTeams[thisTeam.division][0].points):
             qualifyingTeams[thisTeam.division].append(thisTeam)
-            print 'added ', thisTeam.name, ' to ', thisTeam.division
+            #print 'added ', thisTeam.name, ' to ', thisTeam.division
 
         #if thisTeam is better than the current division 'champ', replace it and move the previous one to the wild card list
         elif thisTeam.points > qualifyingTeams[thisTeam.division][0].points:
             for team in qualifyingTeams[thisTeam.division]:
                 qualifyingTeams[thisTeam.conference].append(team) #append current division champ(s) to the wild card list    
-            
-            qualifyingTeams[thisTeam.division] = []
+                #print 'moved ', team.name, ' to wild card'
+
+            qualifyingTeams[thisTeam.division] = [] #clear out the division champ(s) to make room for the new one
+
             qualifyingTeams[thisTeam.division].append(thisTeam)
-            print 'added ', thisTeam.name, ' to ', thisTeam.division
+            #print 'added ', thisTeam.name, ' to ', thisTeam.division
         
         #if thisTeam is worse than the current division champ, append it to the wild card list
         elif thisTeam.points < qualifyingTeams[thisTeam.division][0].points:
             qualifyingTeams[thisTeam.conference].append(thisTeam)
-            print 'added ', thisTeam.name, ' to ', thisTeam.conference, ' wild card'
+            #print 'added ', thisTeam.name, ' to ', thisTeam.conference, ' wild card'
 
 
     for league in ['AL', 'NL']:
@@ -219,22 +237,21 @@ def setSeeds(teamsList, divisions, year):
             if qualifyingTeams[league][i].points < qualifyingTeams[league][i-1].points:
                 for j in range(i,len(qualifyingTeams[league])):
                     removedTeam = qualifyingTeams[league].pop()
-                    print 'removed ', removedTeam.name, ' from ', league, ' WC list'
+                    #print 'removed ', removedTeam.name, ' from ', league, ' WC list'
 
                 break
 
-        print league, ' wild card teams are: '
-        for team in qualifyingTeams[league]:
-            print team.name
+        # print league, ' wild card teams are: '
+        # for team in qualifyingTeams[league]:
+        #     print team.name
 
-
-    # need to trim the wild card teams down
     # if a one-game playoff is needed to break ties, I'll do it as part of runPlayoffs
 
-    # for team in qualifyingTeams['AL']:
-    #     print team.name, team.points
-    # for team in qualifyingTeams['NL']:
-    #     print team.name, team.points
+    print '\n', 'Playoff Qualifying Teams: \n'
+    for key in qualifyingTeams.keys():
+        for team in qualifyingTeams[key]:
+            print key, team.name, team.points
+
 
     return qualifyingTeams
 
