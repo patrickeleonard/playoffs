@@ -130,16 +130,19 @@ if leagueType == 'mlb':
 
 #SIMULATING A FUCKLOAD OF PLAYOFFS
 for i in range(0,numTrials):
-    winner = runPlayoffs(qualifiers, leagueYear)
+    if leagueType == 'mlb':
+        winner = runPlayoffs(qualifiers, leagueYear)
+    
+    else:
+        winner = runPlayoffs(seeds1, seeds2, leagueYear)
+
     totalWins[winner.name] += 1
 
 
 
 # PRINTING RESULTS
 print "\nChampionships (%d trials):\n" % numTrials 
-
 for team in totalWins:
-
     if totalWins[team] > 0:
         print team, totalWins[team], "\n"
 

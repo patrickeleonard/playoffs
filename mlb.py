@@ -352,69 +352,25 @@ def runPlayoffs(qualifiers, year):
 
         champWS = playSeries(playSeries(alcs1, alcs2, lenCS), playSeries(nlcs1, nlcs2, lenCS), lenWS)
 
-    return champWS
     
+    # Print statements
+    # print "\nWild Card winners:"
+    # print wcAL.name
+    # print wcNL.name, "\n"
 
+    # print "ALDS winners:"
+    # print alcs1.name
+    # print alcs2.name, "\n"
 
+    # print "NLDS winners:"
+    # print nlcs1.name
+    # print nlcs2.name, "\n"
 
+    # print "League champions:"
+    # print champAL.name
+    # print champNL.name, "\n"
 
+    # print "World Series champions:"
+    # print champWS.name, "\n"
 
-# # format starting in 2012
-# def runPlayoffs(seedsAL, seedsNL, year):
-
-#     from playseries import playSeries
-
-#     lenWC = 1
-#     lenDS = 5
-#     lenCS = 7
-#     lenWS = 7
-
-#     if year >= 2012:
-
-#         # WILD CARD GAMES
-#         wcAL = playSeries(seedsAL[4], seedsAL[5], lenWC)
-#         wcNL = playSeries(seedsNL[4], seedsNL[5], lenWC)
-
-#     elif year >= 1994:
-#         wcAL = seedsAL[4]
-#         wcNL = seedsNL[4]
-
-#     else:
-#         print "Sorry, I haven't programmed this format yet :("
-#         exit()
-
-#     # DIVISION SERIES
-#     alcs1 = playSeries(seedsAL[1], wcAL, lenDS)
-#     alcs2 = playSeries(seedsAL[2], seedsAL[3], lenDS)
-
-#     nlcs1 = playSeries(seedsNL[1], wcNL, lenDS)
-#     nlcs2 = playSeries(seedsNL[2], seedsNL[3], lenDS)
-
-#     # LEAGUE CHAMPIONSHIP SERIES
-#     champAL = playSeries(alcs1, alcs2, lenCS)
-#     champNL = playSeries(nlcs1, nlcs2, lenCS)
-
-#     # WORLD SERIES
-#     champWS = playSeries(champAL, champNL, lenWS)
-
-#     # Print statements
-#     # print "\nWild Card winners:"
-#     # print wcAL.name
-#     # print wcNL.name, "\n"
-
-#     # print "ALDS winners:"
-#     # print alcs1.name
-#     # print alcs2.name, "\n"
-
-#     # print "NLDS winners:"
-#     # print nlcs1.name
-#     # print nlcs2.name, "\n"
-
-#     # print "League champions:"
-#     # print champAL.name
-#     # print champNL.name, "\n"
-
-#     # print "World Series champions:"
-#     # print champWS.name, "\n"
-
-#     return champWS
+    return champWS

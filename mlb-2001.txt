@@ -1,8 +1,8 @@
-1 - Mariners - 116 - 46
-2 - Yankees - 95 - 65
-3 - Athletics - 102 - 60
-4 - Indians - 91 - 71
-1 - Astros - 93 - 69
-2 - Braves - 88 - 74
-3 - Cardinals - 93 - 69
-4 - Diamondbacks - 92 - 70
+Mariners - 116
+Yankees - 95
+Athletics - 102
+Indians - 91
+Astros - 93
+Braves - 88
+Cardinals - 93
+Diamondbacks - 92

@@ -42,7 +42,7 @@ def setDivisions(year):
 
             }
 
-    elif year < 2014:
+    elif year <= 2014:
         print "sorry, but I haven't set divisions before 2014 yet :("
         exit()
 
