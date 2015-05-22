@@ -1,28 +1,34 @@
 #Team class used by every league
 #teamData input array:
-# [SEED] - [NAME] - [WINS] - [LOSSES] - [TIES (optional)]
+#GENERIC: [SEED] - [NAME] - [WINS] - [LOSSES] - [TIES (optional)]
+#MLB: [NAME] [WINS]
 class Team:
 
     def __init__(self, leagueType, teamData):
 
         global divisions
 
-        # SETTING TEAM'S SEED IN THE PLAYOFFS
-        # right now it's hard coded because that's easier to get up and running
+        # PARSING INPUT DATA, SETTING SEEDS
+        # currently MLB is done by algorithm, others aren't yet
+        # right now others are hard coded because that's easier to get up and running
         # eventually this will be done by a league- and year-specific algorithm
-        if leagueType == 'nhl':
-            self.seed = teamData[0]
+        if leagueType == 'mlb':
+            self.name = teamData[0]
+            self.wins = int(teamData[1])
         else:
-            self.seed = int(teamData[0])
+            if leagueType == 'nhl':
+                self.seed = teamData[0]
+            else:
+                self.seed = int(teamData[0])
 
-        self.name = teamData[1] #currently just using names - hometowns/locations aren't relevant right now
-        self.wins = int(teamData[2]) #regular season wins (can also be runs scored, goals scored, etc.)
-        self.losses = int(teamData[3]) #regular season losses (can also be runs allowed, goals against, etc.)
+            self.name = teamData[1] #currently just using names - hometowns/locations aren't relevant right now
+            self.wins = int(teamData[2]) #regular season wins (can also be runs scored, goals scored, etc.)
+            self.losses = int(teamData[3]) #regular season losses (can also be runs allowed, goals against, etc.)
 
-        if len(teamData) > 4:
-            self.ties = int(teamData[4]) #ties, if applicable (overtime losses in hockey)
-        else:
-            self.ties = 0
+            if len(teamData) > 4:
+                self.ties = int(teamData[4]) #ties, if applicable (overtime losses in hockey)
+            else:
+                self.ties = 0
 
         # SETTING CONFERENCE AND DIVISION
         if leagueType == 'mls':
@@ -102,10 +108,11 @@ with open(fileName, 'r') as teamsFile:
 
         teamsList.append(currentTeam)
 
-        if currentTeam.conference == 'AL' or currentTeam.conference == 'AFC' or currentTeam.conference == 'Eastern':
-            seeds1[currentTeam.seed] = currentTeam
-        elif currentTeam.conference == 'NL' or currentTeam.conference == 'NFC' or currentTeam.conference == 'Western':
-            seeds2[currentTeam.seed] = currentTeam
+        if leagueType != 'mlb':
+            if currentTeam.conference == 'AFC' or currentTeam.conference == 'Eastern':
+                seeds1[currentTeam.seed] = currentTeam
+            elif currentTeam.conference == 'NFC' or currentTeam.conference == 'Western':
+                seeds2[currentTeam.seed] = currentTeam
 
         totalWins[currentTeam.name] = 0
 
@@ -119,14 +126,11 @@ with open(fileName, 'r') as teamsFile:
 
 if leagueType == 'mlb':
     #print teamsList
-    qualifyingTeams = setSeeds(teamsList, divisions, leagueYear)
+    qualifiers = setSeeds(teamsList, divisions, leagueYear)
 
-
-# SIMULATING A FUCKLOAD OF PLAYOFFS
+#SIMULATING A FUCKLOAD OF PLAYOFFS
 for i in range(0,numTrials):
-
-    winner = runPlayoffs(seeds1, seeds2, leagueYear)
-
+    winner = runPlayoffs(qualifiers, leagueYear)
     totalWins[winner.name] += 1
 
 
