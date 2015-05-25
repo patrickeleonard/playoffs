@@ -1,0 +1,16 @@
+1 - Hawks - 60 - 22
+2 - Cavaliers - 53 - 29
+3 - Bulls - 50 - 32
+4 - Raptors - 49 - 33
+5 - Wizards - 46 - 36
+6 - Bucks - 41 - 41
+7 - Celtics - 40 - 42
+8 - Nets - 38 - 44
+1 - Warriors - 67 - 15
+2 - Rockets - 56 - 26
+3 - Clippers - 56 - 26
+4 - Trail Blazers - 51 - 31
+5 - Grizzlies - 55 - 27
+6 - Spurs - 55 - 27
+7 - Mavericks - 50 - 32
+8 - Pelicans - 45 - 37

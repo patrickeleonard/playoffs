@@ -1,7 +1,38 @@
+def setPastChamps():
+
+    pastChamps = {
+        2014: 'Spurs',
+        2013: 'Heat',
+        2012: 'Heat',
+        2011: 'Mavericks',
+        2010: 'Lakers',
+        2009: 'Lakers',
+        2008: 'Celtics',
+        2007: 'Spurs',
+        2006: 'Heat',
+        2005: 'Spurs',
+        2004: 'Pistons',
+        2003: 'Spurs',
+        2002: 'Lakers',
+        2001: 'Lakers',
+        2000: 'Lakers',
+        1999: 'Spurs',
+        1998: 'Bulls',
+        1997: 'Bulls',
+        1996: 'Bulls',
+        1995: 'Rockets',
+        1994: 'Rockets',
+        1993: 'Bulls',
+        1992: 'Bulls',
+        1991: 'Bulls'
+    }
+
+    return pastChamps
+
 def setDivisions(year):
 
     if year >= 2015:
-
+        # Charlotte Bobcats changed name to Hornets
         divisions = {
 
             'Celtics': 'Eastern Atlantic',
@@ -23,8 +54,8 @@ def setDivisions(year):
             'Wizards': 'Eastern Southeast',
 
             'Nuggets': 'Western Northwest',
-            'Timberwolves': 'Western Northwest',
             'Thunder': 'Western Northwest',
+            'Timberwolves': 'Western Northwest',
             'Trail Blazers': 'Western Northwest',
             'Jazz': 'Western Northwest',
 
@@ -39,11 +70,134 @@ def setDivisions(year):
             'Grizzlies': 'Western Southwest',
             'Pelicans': 'Western Southwest',
             'Spurs': 'Western Southwest'
-
             }
 
-    elif year <= 2014:
-        print "sorry, but I haven't set divisions before 2014 yet :("
+    elif year >= 2014:
+        # New Orleans changed name to Pelicans
+        # Nets moved from New Jersey to Brooklyn starting in "2013" season
+        divisions = {
+
+            '76ers': 'Eastern Atlantic',
+            'Celtics': 'Eastern Atlantic',
+            'Knicks': 'Eastern Atlantic',
+            'Nets': 'Eastern Atlantic',
+            'Raptors': 'Eastern Atlantic',
+
+            'Bucks': 'Eastern Central',
+            'Bulls': 'Eastern Central',
+            'Cavaliers': 'Eastern Central',
+            'Pacers': 'Eastern Central',
+            'Pistons': 'Eastern Central',
+
+            'Hawks': 'Eastern Southeast',
+            'Heat': 'Eastern Southeast',
+            'Bobcats': 'Eastern Southeast',
+            'Magic': 'Eastern Southeast',
+            'Wizards': 'Eastern Southeast',
+
+            'Jazz': 'Western Northwest',
+            'Nuggets': 'Western Northwest',
+            'Thunder': 'Western Northwest',
+            'Timberwolves': 'Western Northwest',
+            'Trail Blazers': 'Western Northwest',
+            
+            'Clippers': 'Western Pacific',
+            'Kings': 'Western Pacific',
+            'Lakers': 'Western Pacific',
+            'Suns': 'Western Pacific',
+            'Warriors': 'Western Pacific',
+
+            'Grizzlies': 'Western Southwest',
+            'Mavericks': 'Western Southwest',
+            'Pelicans': 'Western Southwest',
+            'Rockets': 'Western Southwest',
+            'Spurs': 'Western Southwest'
+        }
+
+    elif year >= 2009:
+        # SuperSonics changed name to Thunder following 07-08 season
+        divisions = {
+
+            '76ers': 'Eastern Atlantic',
+            'Celtics': 'Eastern Atlantic',
+            'Knicks': 'Eastern Atlantic',
+            'Nets': 'Eastern Atlantic',
+            'Raptors': 'Eastern Atlantic',
+
+            'Bucks': 'Eastern Central',
+            'Bulls': 'Eastern Central',
+            'Cavaliers': 'Eastern Central',
+            'Pacers': 'Eastern Central',
+            'Pistons': 'Eastern Central',
+
+            'Bobcats': 'Eastern Southeast',
+            'Hawks': 'Eastern Southeast',
+            'Heat': 'Eastern Southeast',
+            'Magic': 'Eastern Southeast',
+            'Wizards': 'Eastern Southeast',
+
+            'Jazz': 'Western Northwest',
+            'Nuggets': 'Western Northwest',
+            'Thunder': 'Western Northwest',
+            'Timberwolves': 'Western Northwest',
+            'Trail Blazers': 'Western Northwest',
+            
+            'Clippers': 'Western Pacific',
+            'Kings': 'Western Pacific',
+            'Lakers': 'Western Pacific',
+            'Suns': 'Western Pacific',
+            'Warriors': 'Western Pacific',
+
+            'Grizzlies': 'Western Southwest',
+            'Mavericks': 'Western Southwest',
+            'Hornets': 'Western Southwest',
+            'Rockets': 'Western Southwest',
+            'Spurs': 'Western Southwest'
+        }
+
+    elif year >= 2005:
+        # Divisions realigned starting in the 04-05 season
+        divisions = {
+
+            '76ers': 'Eastern Atlantic',
+            'Celtics': 'Eastern Atlantic',
+            'Knicks': 'Eastern Atlantic',
+            'Nets': 'Eastern Atlantic',
+            'Raptors': 'Eastern Atlantic',
+
+            'Bucks': 'Eastern Central',
+            'Bulls': 'Eastern Central',
+            'Cavaliers': 'Eastern Central',
+            'Pacers': 'Eastern Central',
+            'Pistons': 'Eastern Central',
+
+            'Bobcats': 'Eastern Southeast',
+            'Hawks': 'Eastern Southeast',
+            'Heat': 'Eastern Southeast',
+            'Magic': 'Eastern Southeast',
+            'Wizards': 'Eastern Southeast',
+
+            'Jazz': 'Western Northwest',
+            'Nuggets': 'Western Northwest',
+            'SuperSonics': 'Western Northwest',
+            'Timberwolves': 'Western Northwest',
+            'Trail Blazers': 'Western Northwest',
+            
+            'Clippers': 'Western Pacific',
+            'Kings': 'Western Pacific',
+            'Lakers': 'Western Pacific',
+            'Suns': 'Western Pacific',
+            'Warriors': 'Western Pacific',
+
+            'Grizzlies': 'Western Southwest',
+            'Mavericks': 'Western Southwest',
+            'Hornets': 'Western Southwest',
+            'Rockets': 'Western Southwest',
+            'Spurs': 'Western Southwest'
+        }
+
+    elif year < 2005:
+        print "sorry, but I haven't set divisions before 2005 yet :("
         exit()
 
     return divisions
