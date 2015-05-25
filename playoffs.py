@@ -9,7 +9,7 @@ class Team:
         global divisions
 
         # PARSING INPUT DATA, SETTING SEEDS
-        # currently MLB is done by algorithm, others aren't yet
+        # currently MLB is done by the setSeeds() algorithm, others aren't yet
         # right now others are hard coded because that's easier to get up and running
         # eventually this will be done by a league- and year-specific algorithm
         if leagueType == 'mlb':
@@ -56,9 +56,25 @@ class Team:
 # PARSING INPUT AND IMPORTING LEAGUE RULES
 from sys import argv
 
-leagueType = argv[1]
-leagueYear = int(argv[2])
-numTrials = int(argv[3])
+arguments = {
+    'league': 'mlb',
+    'year': '2014',
+    'trials': '100',
+    'format': '1-5-7-7'
+    }
+
+scriptName = argv[0]
+if len(argv) > 1:
+    for argItem in argv[1:len(argv)]:
+        temp = argItem.split('=')
+        arguments[temp[0]] = temp[1]
+
+
+leagueType = arguments['league']
+leagueYear = int(arguments['year'])
+numTrials = int(arguments['trials'])
+playoffFormat = arguments['format']
+
 
 if leagueType == 'mlb' or leagueType == 'MLB':
     leagueType = 'mlb'
@@ -96,6 +112,9 @@ totalWins = {}
 # DOING STUFF WITH THE INPUT FILE
 fileName = leagueType + '-' + str(leagueYear) + '.txt'
 
+if leagueType == 'mlb':
+    fileName = 'mlb-data/'+fileName
+
 with open(fileName, 'r') as teamsFile:
 
     for line in teamsFile:
@@ -131,17 +150,26 @@ if leagueType == 'mlb':
 #SIMULATING A FUCKLOAD OF PLAYOFFS
 for i in range(0,numTrials):
     if leagueType == 'mlb':
-        winner = runPlayoffs(qualifiers, leagueYear)
-    
+        winner = runPlayoffs(qualifiers, leagueYear, playoffFormat)
     else:
         winner = runPlayoffs(seeds1, seeds2, leagueYear)
 
-    totalWins[winner.name] += 1
+
+    if leagueType == 'mlb':
+        if winner.name == 'Expos':
+            totalWins['Nationals'] += 1
+        elif winner.name == 'Devil Rays':
+            totalWins['Rays'] += 1
+        else:
+            totalWins[winner.name] += 1
+
+    else:
+        totalWins[winner.name] += 1
 
 
 
 # PRINTING RESULTS
-print "\nChampionships (%d trials):\n" % numTrials 
+print "\n", leagueYear, leagueType, "championships (%d trials):\n" % numTrials 
 for team in totalWins:
     if totalWins[team] > 0:
         print team, totalWins[team], "\n"

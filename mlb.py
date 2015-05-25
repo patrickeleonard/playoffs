@@ -1,3 +1,32 @@
+def setPastChamps():
+
+    pastChamps = {
+        2014: 'Giants',
+        2013: 'Red Sox',
+        2012: 'Giants',
+        2011: 'Cardinals',
+        2010: 'Giants',
+        2009: 'Yankees',
+        2008: 'Phillies',
+        2007: 'Red Sox',
+        2006: 'Cardinals',
+        2005: 'White Sox',
+        2004: 'Red Sox',
+        2003: 'Marlins',
+        2002: 'Angels',
+        2001: 'Diamondbacks',
+        2000: 'Yankees',
+        1999: 'Yankees',
+        1998: 'Yankees',
+        1997: 'Marlins',
+        1996: 'Yankees',
+        1995: 'Braves',
+        1994: False
+    }
+
+    return pastChamps
+
+
 def setDivisions(year):
 
     if year >= 2013:
@@ -181,16 +210,6 @@ def setDivisions(year):
 
 def setSeeds(teamsList, divisions, year):
 
-    #find each division champ for both AL and NL
-
-    #find next 2 best teams in each league (wild card teams)
-
-    #in each league, wild card teams become seeds 4-5 and do the 1-game playoff
-
-    #other division champs are ranked 1-2-3 w/ relevant tiebreakers(?)
-
-    #then it's a typical 1-4 and 2-3 playoff for AL and NL, right?
-
     if year >= 2012:
         numWildCardTeams = 2
     elif year >= 1994:
@@ -257,19 +276,28 @@ def setSeeds(teamsList, divisions, year):
 
 
 
-def runPlayoffs(qualifiers, year):
+def runPlayoffs(qualifiers, year, format):
 
     from playseries import playSeries
+
+    #parse the playoff format and set round lengths
+    temp = format.split('-')
+    format = []
+    for roundLen in temp:
+        format.append(int(roundLen))
+
+    [lenWC, lenDS, lenCS, lenWS] = format
+
+    # DEFAULT LENGTHS: (2012-present)
+    # lenWC = 1
+    # lenDS = 5
+    # lenCS = 7
+    # lenWS = 7    
 
     if year >= 2012:
         numWildCardTeams = 2
     elif year >= 1994:
         numWildCardTeams = 1
-
-    lenWC = 1
-    lenDS = 5
-    lenCS = 7
-    lenWS = 7    
 
     #TIEBREAKING: THIS PROCESS IS ANNOYING AND COMPLEX BUT UNFORTUNATELY NECESSARY ON RARE OCCASIONS
     for division in qualifiers.keys():

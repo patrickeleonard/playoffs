@@ -1,0 +1,30 @@
+Yankees - 95
+Red Sox - 95
+Blue Jays - 80
+Orioles - 74
+Devil Rays - 67
+White Sox - 99
+Indians - 93
+Twins - 83
+Tigers - 71
+Royals - 56
+Angels - 95
+Athletics - 88
+Rangers - 79
+Mariners - 69
+Braves - 90
+Phillies - 88
+Marlins - 83
+Mets - 83
+Nationals - 81
+Cardinals - 100
+Astros - 89
+Brewers - 81
+Cubs - 79
+Reds - 73
+Pirates - 67
+Padres - 82
+Diamondbacks - 77
+Giants - 75
+Dodgers - 71
+Rockies - 67
