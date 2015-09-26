@@ -208,6 +208,28 @@ def setDivisions(year):
     return divisions
 
 
+def setBettingOdds(year):
+
+    if year == 2014:
+
+        bettingOdds = {
+
+            'Nationals': 4.5,
+            'Angels': 4.5,
+            'Dodgers': 4.5,
+            'Orioles': 7.0,
+            'Tigers': 7.0,
+            'Cardinals': 7.0,
+            'Athletics': 10.0,
+
+        # couldn't find odds for Royals, Giants, or Pirates but they're worse than Athletics'
+            'Royals': 11.0,
+            'Giants': 11.0,
+            'Pirates': 11.0
+        }
+
+
+
 def setSeeds(teamsList, divisions, year):
 
     if year >= 2012:

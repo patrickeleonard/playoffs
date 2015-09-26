@@ -1,7 +1,7 @@
 #Team class used by every league
 #teamData input array:
 #GENERIC: [SEED] - [NAME] - [WINS] - [LOSSES] - [TIES (optional)]
-#MLB: [NAME] [WINS]
+#MLB/NBA: [NAME] [WINS]
 class Team:
 
     def __init__(self, leagueType, teamData):
@@ -12,7 +12,7 @@ class Team:
         # currently MLB is done by the setSeeds() algorithm, others aren't yet
         # right now others are hard coded because that's easier to get up and running
         # eventually this will be done by a league- and year-specific algorithm
-        if leagueType == 'mlb':
+        if leagueType == 'mlb' or leagueType == 'nba':
             self.name = teamData[0]
             self.wins = int(teamData[1])
         else:
@@ -63,7 +63,7 @@ arguments = {
     'format': '1-5-7-7'
     }
 
-scriptName = argv[0]
+#scriptName = argv[0]
 if len(argv) > 1:
     for argItem in argv[1:len(argv)]:
         temp = argItem.split('=')
